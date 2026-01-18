@@ -9,6 +9,6 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
 
-    testIsolation: false
+    testIsolation: false //integration
   },
 });
