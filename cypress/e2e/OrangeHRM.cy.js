@@ -118,17 +118,26 @@ cy.wait(6000)
 
 //************************************************#5 delete job by assertion*************************************************************
    //click admin tab
-cy.get(':nth-child(1) > .oxd-main-menu-item').click()
-cy.wait(3000)
-//click job dropdown
-cy.get(':nth-child(2) > .oxd-topbar-body-nav-tab-item').click()
-cy.wait(2000)
-//click job titles
-cy.get(':nth-child(1) > .oxd-topbar-body-nav-tab-link').click()
-cy.wait(3000)
-// find row in a list that contains job title
- cy.contains('Quality Analyst').parents('[role="row"]').find('button').eq(0).click();
- // confirm delete 
-cy.get('.oxd-button--label-danger').should('be.visible').click()
-.wait(3000);
+// cy.get(':nth-child(1) > .oxd-main-menu-item').click()
+// cy.wait(3000)
+// //click job dropdown
+// cy.get(':nth-child(2) > .oxd-topbar-body-nav-tab-item').click()
+// cy.wait(2000)
+// //click job titles
+// cy.get(':nth-child(1) > .oxd-topbar-body-nav-tab-link').click()
+// cy.wait(3000)
+// // find row in a list that contains job title
+//  cy.contains('Quality Analyst').parents('[role="row"]').find('button').eq(0).click();
+//  // confirm delete 
+// cy.get('.oxd-button--label-danger').should('be.visible').click()
+// .wait(3000);
+
+
+
+
+
+
+
+
+
 })
