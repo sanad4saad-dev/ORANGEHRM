@@ -1,3 +1,7 @@
+before(() => {
+  cy.clearCookies();
+  cy.clearLocalStorage();
+}); 
 it.only('waterfall logout' , function() { 
 
 //**********************************************logout*****************************************************

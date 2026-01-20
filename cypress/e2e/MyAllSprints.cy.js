@@ -1,5 +1,5 @@
 import './VisitLogin.cy.js'
 // import './AddEmployee.cy.js'
-// import './Job.cy.js'
+// import './job.cy.js'
 // import './AddInfo.cy.js'
-// import './Logout.cy.js'
+// import './LogOut.cy.js'
