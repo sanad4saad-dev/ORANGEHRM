@@ -1,13 +1,25 @@
-before(() => {
-  cy.clearCookies();
-  cy.clearLocalStorage();
-}); 
-it.only('waterfall logout' , function() { 
+it('LogOut', function() { 
+    //**********************************************logout*****************************************************
+    
+    // انتظار بسيط للتأكد من استقرار الصفحة السابقة
+    cy.wait(2000)
 
-//**********************************************logout*****************************************************
-cy.get('.oxd-userdropdown-tab > .oxd-icon').click()
-cy.wait(3000)
-cy.get(':nth-child(4) > .oxd-userdropdown-link').click()
-cy.wait(6000)
+    // 1. الضغط على أيقونة المستخدم (Dropdown)
+    cy.get('.oxd-userdropdown-tab').click()
+    
+    // 2. (الإصلاح الهام) التحقق من أن القائمة انفتحت فعلاً
+    // هذا السطر سينتظر القائمة حتى تظهر، ولن يكمل إلا إذا ظهرت
+    cy.get('.oxd-dropdown-menu').should('be.visible')
+    
+    // وقفة جمالية (ثانيتين) لنرى القائمة مفتوحة
+    cy.wait(2000)
 
+    // 3. الضغط على Logout
+    cy.contains('Logout').click()
+    
+    // 4. التأكد من العودة لصفحة الدخول
+    cy.url().should('include', 'login')
+    
+    // وقفة ختامية للفيديو
+    cy.wait(4000)
 })

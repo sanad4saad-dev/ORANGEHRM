@@ -4,7 +4,7 @@ before(() => {
   cy.clearLocalStorage();
 });
 
-it.only('visitlogin' , function() { 
+it('VisitLogin' , function() { 
 
 //**********************************************#1 visit login page*****************************************************
 cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')

@@ -1,91 +1,93 @@
-it.only('waterfall addinfo' , function() { 
-//****************************************Add Info************************************** */
-//click My Info tab
-cy.get(':nth-child(6) > .oxd-main-menu-item').click()
-cy.wait(3000)
-// first name button
-cy.get('.--name-grouped-field > :nth-child(1) > :nth-child(2) > .oxd-input').click()
-cy.wait(3000)
-cy.get('.--name-grouped-field > :nth-child(1) > :nth-child(2) > .oxd-input').clear()
-cy.get('.--name-grouped-field > :nth-child(1) > :nth-child(2) > .oxd-input').type('Sanad')
-cy.wait(3000)
-//middle name 
-cy.get(':nth-child(2) > :nth-child(2) > .oxd-input').click()
-cy.wait(3000)
-cy.get(':nth-child(2) > :nth-child(2) > .oxd-input').clear()
-cy.get(':nth-child(2) > :nth-child(2) > .oxd-input').type('Saad')
-cy.wait(3000)
-//last name
-cy.get(':nth-child(3) > :nth-child(2) > .oxd-input').click()
-cy.wait(3000)
-cy.get(':nth-child(3) > :nth-child(2) > .oxd-input').clear()
-cy.get(':nth-child(3) > :nth-child(2) > .oxd-input').type('Alghamdi')
-cy.wait(3000)
-//user id
-cy.get(':nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input').click()
-cy.wait(3000)
-cy.get(':nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input').clear()
-cy.get(':nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input').type('123456789')
-cy.wait(3000)
-//other id
-cy.get(':nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input').click()
-cy.wait(3000)
-cy.get(':nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input').clear()
-cy.get(':nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input').type('987654321')
-cy.wait(3000)
-//license number
-cy.get(':nth-child(2) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input').click()
-cy.wait(3000)
-cy.get(':nth-child(2) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input').clear()
-cy.get(':nth-child(2) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input').type('Cypress Test')
-cy.wait(3000)
+it('AddInfo', function() {
 
-//license expiry date
-cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-input').click()
-cy.wait(3000)
-cy.get(':nth-child(3) > .oxd-calendar-date').click()
-cy.wait(3000)
-//address
-cy.get(':nth-child(5) > :nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text > .oxd-select-text-input').click()
-cy.wait(3000)
-//selecting option from dropdown
-cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text > .oxd-select-text--after > .oxd-icon').click()
-cy.wait(3000)
-cy.get('.oxd-select-dropdown > :nth-child(2)').click()
-cy.wait(3000)
-//date of birth
-cy.get(':nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-icon').click()
-cy.wait(3000)
-cy.get(':nth-child(7) > .oxd-calendar-date').click()
-cy.wait(3000)
+    //**************************************** Ignore Site Errors ************************************** */
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false
+    })
 
-cy.get(':nth-child(1) > :nth-child(2) > .oxd-radio-wrapper > label > .oxd-radio-input').click()
-cy.wait(3000)
+    //**************************************** Navigation ************************************** */
+    cy.contains('.oxd-main-menu-item', 'My Info').click()
+    cy.wait(3000) 
+    cy.contains('h6', 'Personal Details').should('be.visible')
 
-cy.get(':nth-child(1) > .oxd-form > .oxd-form-actions > .oxd-button').click()
-cy.wait(6000)
+    //**************************************** Personal Details ************************************** */
 
-cy.get('.orangehrm-card-container > .oxd-form > .oxd-form-row > .oxd-grid-3 > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text > .oxd-select-text--after > .oxd-icon').click()
-cy.wait(3000)
-cy.get('.oxd-select-dropdown > :nth-child(2)').click()
-cy.wait(3000)
+    // 1. الاسم الكامل
+    cy.get('[name="firstName"]').clear().type('Sanad', { delay: 600 })
+    cy.wait(1500)
+    cy.get('[name="middleName"]').clear().type('Saad', { delay: 600 })
+    cy.wait(1500)
+    cy.get('[name="lastName"]').clear().type('Alghamdi', { delay: 600 })
+    cy.wait(2000)
 
-cy.get('.orangehrm-card-container > .oxd-form > .oxd-form-row > .oxd-grid-3 > :nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input').click()
-cy.wait(3000)
-cy.get('.orangehrm-card-container > .oxd-form > .oxd-form-row > .oxd-grid-3 > :nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input').type('Cypress Address')
-cy.wait(3000)
+    // 2. الرقم الوظيفي
+    cy.get('.oxd-input-group:has(label:contains("Employee Id")) input').clear().type('202311', { delay: 600 })
+    cy.wait(1500)
+    
+    // 3. رقم آخر
+    cy.get('.oxd-input-group:has(label:contains("Other Id")) input').clear().type('998877', { delay: 600 })
+    cy.wait(1500)
 
-cy.get('.orangehrm-card-container > .oxd-form > .oxd-form-actions > .oxd-button').click()
-cy.wait(6000)
+    // 4. رخصة القيادة
+    cy.get('.oxd-input-group:has(label:contains("Driver\'s License Number")) input').clear().type('SA-123456', { delay: 600 })
+    cy.wait(1500)
 
-cy.get('.employee-image').click()
-cy.wait(3000)
+    // 5. تاريخ انتهاء الرخصة
+    cy.get('.oxd-input-group:has(label:contains("License Expiry Date")) input').clear().type('2030-05-20').type('{enter}')
+    cy.wait(1500)
 
-cy.get('.oxd-file-div > .oxd-icon-button > .oxd-icon').click()
-cy.wait(2000)
-cy.get('[type="file"]').selectFile('C:/Users/sanad/Desktop/ORANGEHRM/cypress/fixtures/images.jpg', {force: true})
-cy.wait(6000)
-cy.get('.oxd-button').click()
-cy.wait(6000)
+    // 6. الجنسية
+    cy.get('.oxd-input-group:has(label:contains("Nationality")) .oxd-select-text').click({force: true})
+    cy.wait(1000)
+    cy.contains('.oxd-select-option', 'Saudi').click()
+    cy.wait(1500)
+
+    // 7. الحالة الاجتماعية
+    cy.get('.oxd-input-group:has(label:contains("Marital Status")) .oxd-select-text').click({force: true})
+    cy.wait(1000)
+    cy.contains('.oxd-select-option', 'Single').click()
+    cy.wait(1500)
+
+    // 8. تاريخ الميلاد (التعديل هنا) ✅
+    // أضفنا {force: true} لنتغلب على مشكلة الشريط العلوي في وضع HD
+    cy.get('.oxd-input-group:has(label:contains("Date of Birth")) input').clear({force: true}).type('2000-01-01', {force: true}).type('{enter}', {force: true})
+    cy.wait(1500)
+
+    // 9. الجنس
+    cy.contains('.oxd-radio-wrapper', 'Male').click({force: true})
+    cy.wait(2000)
+    
+    // حفظ القسم الأول
+    cy.get('.oxd-form-actions button[type="submit"]').eq(0).click({force: true})
+    cy.get('.oxd-toast').should('be.visible')
+    cy.wait(3000)
+
+    //**************************************** Custom Fields ************************************** */
+    
+    cy.get('.oxd-input-group:has(label:contains("Blood Type")) .oxd-select-text').scrollIntoView()
+    cy.wait(1500)
+
+    cy.get('.oxd-input-group:has(label:contains("Blood Type")) .oxd-select-text').click({force: true})
+    cy.wait(1000)
+    cy.contains('.oxd-select-option', 'O+').click()
+    cy.wait(1500)
+    
+    cy.get('.oxd-input-group:has(label:contains("Test_Field")) input').clear().type('Testing Form', { delay: 600 })
+    cy.wait(1500)
+
+    cy.get('.oxd-form-actions button[type="submit"]').eq(1).click()
+    cy.get('.oxd-toast').should('be.visible')
+    cy.wait(3000)
+
+    //**************************************** Attachments ************************************** */
+    
+    cy.get('.employee-image').click()
+    cy.wait(3000)
+
+    cy.get('input[type="file"]').selectFile('cypress/fixtures/images.jpg', {force: true})
+    cy.wait(2000)
+
+    cy.get('button[type="submit"]').click()
+    cy.wait(5000)
 
 })

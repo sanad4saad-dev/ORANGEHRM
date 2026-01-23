@@ -1,25 +1,28 @@
 const { defineConfig } = require("cypress");
-const { report } = require("process");
 
 module.exports = defineConfig({
-projectId: "j6t6z5", // your Cypress project ID
+  projectId: "bnawto", // الـ ID الخاص بك
 
+  // ******* إعدادات الفيديو الاحترافية (HD) *******
+  video: true,                 // تفعيل الفيديو
+  videoCompression: false,     // إلغاء الضغط (يجعل الفيديو فائق الوضوح)
+  viewportWidth: 1280,         // عرض عريض (HD)
+  viewportHeight: 720,         // ارتفاع مناسب
+  // *****************************************
 
-
-  video:true, // for recording videos of test runs
-  reporter: "mochawesome", // specify the reporter
+  reporter: "mochawesome",
   reporterOptions: {
-    reportDir: "cypress/reports", // directory to save reports
-    overwrite: true, // do not overwrite existing reports
-    html: true, // generate HTML report
-    json: false // generate JSON report
+    reportDir: "cypress/reports",
+    overwrite: true,
+    html: true,
+    json: false
   },
-  
+
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-
-    testIsolation: false //integration
+    // هذا السطر مهم للحفاظ على الحالة بين الاختبارات كما في كودك
+    testIsolation: false, 
   },
 });
